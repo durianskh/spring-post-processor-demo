@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class HelloScanner extends ClassPathBeanDefinitionScanner {
 
-    private Class<? extends HelloFactoryBean> mapperFactoryBeanClass = HelloFactoryBean.class;
+    private Class<? extends HelloFactoryBean> helloFactoryBeanClass = HelloFactoryBean.class;
 
     public HelloScanner(BeanDefinitionRegistry registry) {
         super(registry, false);
@@ -36,7 +36,7 @@ public class HelloScanner extends ClassPathBeanDefinitionScanner {
                 .map(beanDefinitionHolder -> (GenericBeanDefinition) beanDefinitionHolder.getBeanDefinition())
                 .forEach(definition -> {
                     definition.getConstructorArgumentValues().addGenericArgumentValue(definition.getBeanClassName());
-                    definition.setBeanClass(this.mapperFactoryBeanClass);
+                    definition.setBeanClass(this.helloFactoryBeanClass);
                     definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
                     definition.setLazyInit(false);
                 });
